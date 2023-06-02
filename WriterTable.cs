@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Dummy_Db
 {
@@ -32,8 +31,11 @@ namespace Dummy_Db
 
         private static int GetDateLength(List<StudentsBook> studentsBook, int dateLength = 0)
         {
-            foreach (var studentBook in studentsBook)
-                dateLength = Math.Max(dateLength, studentBook.Name!.Length);
+            foreach (var item in studentsBook)
+            {
+                string date = item.DateOfGetting.ToString("dd.MM.yyyy");
+                dateLength = Math.Max(date.Length, dateLength);
+            }
 
             return dateLength;
         }
