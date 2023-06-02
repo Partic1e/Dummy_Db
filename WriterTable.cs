@@ -5,40 +5,40 @@ namespace Dummy_Db
 {
     static class WriterTable
     {
-        static int GetAuthorLength(List<Book> books, int maxAuthor = 0)
+        private static int GetAuthorLength(List<Book> books, int maxAuthor = 0)
         {
             foreach (var book in books)
             {
-                string authorName = book.AuthorName;
+                string authorName = book.AuthorName!;
                 if (maxAuthor < authorName.Length)
                     maxAuthor = authorName.Length;
             }
             return maxAuthor;
         }
 
-        static int GetBookLength(List<Book> books, int maxBookName = 0)
+        private static int GetBookLength(List<Book> books, int maxBookName = 0)
         {
             foreach (var book in books)
             {
-                string bookName = book.Name;
+                string bookName = book.Name!;
                 if (maxBookName < bookName.Length)
                     maxBookName = bookName.Length;
             }
             return maxBookName;
         }
 
-        static int GetStudentLength(List<Student> students, int maxStudentName = 0)
+        private static int GetStudentLength(List<Student> students, int maxStudentName = 0)
         {
             foreach (var student in students)
             {
-                string studentName = student.Name;
+                string studentName = student.Name!;
                 if (maxStudentName < studentName.Length)
                     maxStudentName = studentName.Length;
             }
             return maxStudentName;
         }
 
-        static int GetDateLength(List<StudentsBook> studentsWithBook, int dateLength = 0)
+        private static int GetDateLength(List<StudentsBook> studentsWithBook, int dateLength = 0)
         {
             foreach (var item in studentsWithBook)
             {
@@ -64,14 +64,14 @@ namespace Dummy_Db
 
             foreach (var item in studentsBook)
             {
-                var student = students.Find(s => s.Id == item.StudentId);
-                var book = books.Find(b => b.Id == item.BookId);
+                Student? student = students.Find(s => s.Id == item.StudentId);
+                Book? book = books.Find(b => b.Id == item.BookId);
 
                 string dateOfGetting = item.DateOfGetting.ToString("dd.MM.yyyy");
 
-                Console.Write("|" + student.Name.PadRight(maxReader) + "|");
-                Console.Write(book.Name.PadRight(maxBookName) + "|");
-                Console.Write(book.AuthorName.PadRight(maxAuthor) + "|");
+                Console.Write("|" + student!.Name!.PadRight(maxReader) + "|");
+                Console.Write(book!.Name!.PadRight(maxBookName) + "|");
+                Console.Write(book.AuthorName!.PadRight(maxAuthor) + "|");
                 Console.Write(dateOfGetting.PadRight(maxDateLength) + "|");
                 Console.WriteLine();
             }

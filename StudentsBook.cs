@@ -2,7 +2,7 @@
 
 namespace Dummy_Db
 {
-    public class StudentsBook
+    class StudentsBook
     {
         public int BookId { get; set; }
         public int StudentId { get; set; }

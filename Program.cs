@@ -4,15 +4,21 @@ namespace Dummy_Db
 {
     class Program
     {
+        private const string CsvFolderPath = "../../../../Dummy_DB";
+
         static void Main(string[] args)
         {
-            List<Student> students = new();
-            List<Book> books = new();
-            List<StudentsBook> studentsBook = new();
+            string studentsPath = string.Concat(CsvFolderPath, "\\student.csv");
+            string booksPath = string.Concat(CsvFolderPath, "\\book.csv");
+            string studentsBookPath = string.Concat(CsvFolderPath, "\\studentsBook.csv");
 
-            studentsBook = CsvParser.ParseStudentsBook(studentsBook);
-            students = CsvParser.ParseStudent(students);
-            books = CsvParser.ParseBook(books);
+            List<Student> students;
+            List<Book> books;
+            List<StudentsBook> studentsBook;
+
+            studentsBook = CsvReader.ReadStudentsBook(studentsBookPath);
+            students = CsvReader.ReadStudent(studentsPath);
+            books = CsvReader.ReadBook(booksPath);
 
             WriterTable.WriteTable(studentsBook, books, students);
         }
