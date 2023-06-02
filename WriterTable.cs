@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Dummy_Db
 {
@@ -8,44 +9,32 @@ namespace Dummy_Db
         private static int GetAuthorLength(List<Book> books, int maxAuthor = 0)
         {
             foreach (var book in books)
-            {
-                string authorName = book.AuthorName!;
-                if (maxAuthor < authorName.Length)
-                    maxAuthor = authorName.Length;
-            }
+                maxAuthor = Math.Max(maxAuthor, book.AuthorName!.Length);
+    
             return maxAuthor;
         }
 
         private static int GetBookLength(List<Book> books, int maxBookName = 0)
         {
             foreach (var book in books)
-            {
-                string bookName = book.Name!;
-                if (maxBookName < bookName.Length)
-                    maxBookName = bookName.Length;
-            }
+                maxBookName = Math.Max(maxBookName, book.Name!.Length);
+            
             return maxBookName;
         }
 
         private static int GetStudentLength(List<Student> students, int maxStudentName = 0)
         {
             foreach (var student in students)
-            {
-                string studentName = student.Name!;
-                if (maxStudentName < studentName.Length)
-                    maxStudentName = studentName.Length;
-            }
+                maxStudentName = Math.Max(maxStudentName, student.Name!.Length);
+
             return maxStudentName;
         }
 
-        private static int GetDateLength(List<StudentsBook> studentsWithBook, int dateLength = 0)
+        private static int GetDateLength(List<StudentsBook> studentsBook, int dateLength = 0)
         {
-            foreach (var item in studentsWithBook)
-            {
-                string date = item.DateOfGetting.ToString("dd.MM.yyyy");
-                if (date.Length > dateLength)
-                    dateLength = date.Length;
-            }
+            foreach (var studentBook in studentsBook)
+                dateLength = Math.Max(dateLength, studentBook.Name!.Length);
+
             return dateLength;
         }
 
