@@ -4,7 +4,7 @@ namespace Dummy_Db
 {
     class Program
     {
-        private const string CsvFolderPath = "../../../../Dummy_DB";
+        private const string CsvFolderPath = "..\\..\\..\\..\\Dummy_DB";
 
         static void Main(string[] args)
         {
